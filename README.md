@@ -14,6 +14,9 @@ gcc main.c BitManipulation.c Board.c -o main.exe
 
 ## Directions
 1. Have a friend<br>
+2. Run the program <br>
+3. Type in the right column letter and row number as input for the square on the board. <br>
+4. Have fun <br>
 
 ## Test Results
 This Checkers Bitboard game engine has the basic functions of capturing, moving, quitting, and simple win condition of a player having 0 checkers pieces left. With the capturing function allowing for multiple captures in one turn.
