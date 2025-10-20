@@ -14,7 +14,7 @@ gcc main.c BitManipulation.c Board.c -o main.exe
 
 ## Directions
 1. Have a friend<br>
-2. Run the program <br>
+2. Player 1 are the white pieces, player 2 are the black pieces. <br>
 3. Type in the right column letter and row number as input for the square on the board. <br>
 4. Have fun <br>
 
