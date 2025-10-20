@@ -119,7 +119,7 @@ int main() {
             // checks if there are still available captures and loops until captures aren't available
             while (HasCapture(current_pos, &game.p1_pieces, &game.p2_pieces, &game.p1_kings, &game.p2_kings, p1_turn)) {
                 PrintBoard(&game.p1_pieces, &game.p2_pieces, &game.p1_kings, &game.p2_kings); // prints current board
-                wprintf(L"Another capture is available from %d. Enter next destination: ", current_pos);
+                wprintf(L"Another capture is available from here. Enter next destination: ");
                 scanf(" %c%d", &to_col, &to_row);
                 to_col = toupper(to_col);
                 int next_to = SquareIndex(to_row - 1, to_col - 'A'); // next position to move to
