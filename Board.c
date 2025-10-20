@@ -132,10 +132,6 @@ int MovePiece(unsigned int from, int to, unsigned int *p1_pieces, unsigned int *
             wprintf(L"Destination square is already occupied.\n");
             return -1;
         }
-        else if(!GetBit(*p2_pieces, from)) { // no pieces here
-            wprintf(L"There are no pieces here to move.\n");
-            return -1;
-        }
         else if(GetBit(*p2_kings, from)){ // checks if its a king
             if(DiagonalKing(from, to)) {
                 *p2_kings = ClearBit(*p2_kings, from);
@@ -146,6 +142,10 @@ int MovePiece(unsigned int from, int to, unsigned int *p1_pieces, unsigned int *
                 wprintf(L"Your king cannot move there!\n");
                 return -1;
             }
+        }
+        else if(!GetBit(*p2_pieces, from)) { // no pieces here
+            wprintf(L"There are no pieces here to move.\n");
+            return -1;
         }
         else if(GetBit(*p2_pieces, from)){ // checks if the piece is there
             if(DiagonalPiece2(from, to)) {

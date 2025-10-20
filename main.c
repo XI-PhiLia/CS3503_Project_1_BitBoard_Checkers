@@ -27,6 +27,7 @@ int main() {
     bool gameover = false;
     while(!gameover) {
         char from_col, to_col;
+        char input[4];
         char direction[3] = {0};
         int from_row, to_row, to;
         int player = (game.current_turn % 2) + 1;
@@ -43,9 +44,14 @@ int main() {
         scanf(" %c", &choice);
         if (choice == '1') {
             // gets the starting col,row and ending col,row for moving
-            wprintf(L"Enter starting square (example: C3): ");
-            scanf(" %c%d", &from_col, &from_row);
-            from_col = toupper(from_col);
+            wprintf(L"\nEnter starting square (example: C3): ");
+            scanf(" %3s", &input);
+            if(strlen(input)<2) {
+                wprintf(L"Invalid square. Try again.\n");
+                continue;
+            }
+            from_row = input[1] - '0';
+            from_col = toupper(input[0]);
             wprintf(L"Enter destination: Right (R), Left (L), Backwards-Right (BR), Backwards-Left (BL):");
             scanf(" %2s", &direction); 
             for (int i = 0; i < 2; i++) // converts to uppercase
@@ -89,7 +95,7 @@ int main() {
             }
             to = from + change; // calculates the end position based on the offset (change) and starting square
             // double checks that the position moved to/moved from is within the 32 bit board
-            if (from < 0 || from >= 32 || to >= 32 || to < 0) { 
+            if (from < 0 || from > 31 || to > 31 || to < 0) { 
                 wprintf(L"Invalid square(s). Try again.\n");
                 continue;
             }
