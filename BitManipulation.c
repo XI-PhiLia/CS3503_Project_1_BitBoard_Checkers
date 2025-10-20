@@ -3,38 +3,71 @@
 #include <string.h>
 #include <math.h>
 
-// Basic bit operations- implement these or equivalent functions
-unsigned int SetBit(unsigned int value, int position);
+// Basic bit operations
 
 // Set bit to 1
-unsigned int ClearBit(unsigned int value, int position); // Set bit to 0
-unsigned int ToggleBit(unsigned int value, int position); // Flip bit
-int GetBit(unsigned int value, int position); // Get bit value
-
-
-// Counting and finding
-int CountBits(unsigned int value); // Count 1s
- 
-// Shift operations
-unsigned int ShiftLeft(unsigned int value, int positions);
-unsigned int ShiftRight(unsigned int value, int positions);
-
-// Display functions
-void PrintBinary(unsigned int value); // Show in binary
-void PrintHex(unsigned int value); // Show in hex
-
-// Traditional approach
-unsigned int SetBit(unsigned int value, int position) {
+unsigned int SetBit(unsigned int value, int position) { 
     if (position < 0 || position >= 32) return value;
         return value | (1 << position);
-    }
-// Alternative: Helper function approach
+}
+
+// Set bit to 0
+unsigned int ClearBit(unsigned int value, int position) { 
+    if (position < 0 || position >= 32) return value;
+        return value & ~(1 << position);
+}
+
+// Flip bit
+unsigned int FlipBit(unsigned int value, int position) {  
+    if (position < 0 || position >= 32) return value;
+        return value ^ (1 << position);
+}
+
+// Get bit value
+int GetBit(unsigned int value, int position) { 
+    return (value >> position) & 1; 
+}
+
+// Creates mask
 unsigned int CreateMask(int position) {
     return 1 << position;
 }
 
-unsigned int SetBitWithMask(unsigned int value, int position) {
-    return value | CreateMask(position);
+// Counting and finding
+// Count 1s
+int CountBits(unsigned int value) {
+    int count = 0;
+    while(value) {
+        count += value & 1; // count++ if rightmost bit is 1
+        value >>= 1; // shift right to check next bit
+    }
+    return count;
+}
+
+// Shift operations
+unsigned int ShiftLeft(unsigned int value, int positions) {
+    return value << positions;
+}
+unsigned int ShiftRight(unsigned int value, int positions) {
+    return value >> positions;
+}
+
+// Display functions
+// Show in binary
+void PrintBinary(unsigned int value) {
+    int i = 31;
+    while(i>=0) {
+        printf("%d", GetBit(value, i)); // grabs & prints bits
+        if(i%4 == 0 && i != 0) { // spaces between 4 bits
+            printf(" ");
+        }
+        i--;
+    }
+}
+
+// Show in hex
+void PrintHex(unsigned int value) {
+    printf("0x%08X\n", value);
 }
 
 // Alternative: Combined function approach
